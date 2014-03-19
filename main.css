@@ -5,6 +5,8 @@ html
 
 body
 {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
 	height: 100%;
 	background-image: radial-gradient(circle farthest-side at center top, #D2D3B8 0%, #88836B 100%);
 	background-image: -webkit-gradient(radial, center top, 0, center top, 487, color-stop(0, #D2D3B8), color-stop(1, #88836B));
@@ -13,13 +15,33 @@ body
 	background-image: -o-radial-gradient(center top, circle farthest-side, #D2D3B8 0%, #88836B 100%);
 }
 
+#opening
+{
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	width: 800px;
+	margin-left: -400px;
+	text-align: center;
+	color: #ffffff;
+}
+
 #typing
 {
+	display: none;
 }
 
 #drawing
 {
 	display: none;
+}
+
+h1
+{
+	color: white;
+	font-size: 7em;
+	line-height: .1em;
+	font-weight: 100;
 }
 
 #typecontent
@@ -34,11 +56,26 @@ body
 	margin-top: -119px;
 }
 
+canvas
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	height: 300px;
+	margin-left: -150px;
+	margin-top: -150px;
+}
+
 table
+{
+	width: 180px;
+}
+
+table, canvas
 {
 	display: block;
 	padding: 4px;
-	width: 180px;
 	background-color: #3f3f3f;
 	border: 1px solid #1e1e1e;
 	-webkit-border-radius: 5px;
@@ -68,7 +105,7 @@ table
 	text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
 }
 
-.tdbutton input
+input[type="button"]
 {
 	display: block;
 	margin: 2px;
@@ -93,11 +130,20 @@ table
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d5d5d', endColorstr='#404040',GradientType=0 );
 }
 
-.tdbutton input[type=button]:active, .tdbutton input[type=button]:focus
+.tdbutton input[type="button"]:active, .tdbutton input[type="button"]:focus
 {
 	position: relative;
 	top: 2px;
 	-webkit-box-shadow: inset 0px 1px 1px 0px #292929;
 	box-shadow: inset 0px 1px 1px 0px #292929;
 	background: #333;
+}
+
+input[type=button].introbutton
+{
+	display: inline;
+	width: 100px;
+	height: 60px;
+	margin-left: auto;
+	margin-right: auto;
 }
