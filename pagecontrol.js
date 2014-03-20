@@ -57,4 +57,14 @@ function numinput(num)
     }
 }
 
+function OCRImage(image)
+{
+    // example I'll work with
+    var canvas = document.createElement('canvas')
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    canvas.getContext('2d').drawImage(image, 0, 0)
+    return OCRAD(canvas)
+}
+
 // going to use https://github.com/antimatter15/ocrad.js for OCR stuff
