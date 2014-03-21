@@ -23,6 +23,10 @@ function inputMethod(iMethod)
         document.getElementById("drawing").style.display = "block";
         OCRImage();
     }
+    else if(iMethod === "speak")
+    {
+        document.getElementById("drawing").style.display = "block";
+    }
     else
     {
         alert("what the heck is happening");

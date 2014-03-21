@@ -36,6 +36,11 @@ body
 	display: none;
 }
 
+#speaking
+{
+	display: none;
+}
+
 h1
 {
 	color: white;
