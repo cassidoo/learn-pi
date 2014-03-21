@@ -21,6 +21,7 @@ function inputMethod(iMethod)
     else if(iMethod === "draw")
     {
         document.getElementById("drawing").style.display = "block";
+        OCRImage();
     }
     else
     {
@@ -57,14 +58,64 @@ function numinput(num)
     }
 }
 
-function OCRImage(image)
+function OCRImage()
 {
-    // example I'll work with
-    var canvas = document.createElement('canvas')
-    canvas.width = image.naturalWidth;
-    canvas.height = image.naturalHeight;
-    canvas.getContext('2d').drawImage(image, 0, 0)
-    return OCRAD(canvas)
+    // example I'll work with from https://github.com/antimatter15/ocrad.js/blob/master/demo.html
+    var c = document.getElementById("drawCanvas");
+    var o = c.getContext('2d');
+    var drag = false, lastX, lastY;
+    
+    c.onmousedown = function(e)
+    {
+        drag = true;
+        lastX = 0;
+        lastY = 0;
+        e.preventDefault();
+        c.onmousemove(e);
+    };
+    
+    c.onmouseup = function(e)
+    {
+        drag = false;
+        e.preventDefault();
+        runOCR();
+    };
+    
+    c.onmousemove = function(e)
+    {
+        e.preventDefault();
+        var rect = c.getBoundingClientRect();
+        var r = 5;
+
+        function dot(x, y)
+        {
+            o.beginPath();
+            o.moveTo(x + r, y);
+            o.arc(x, y, r, 0, Math.PI * 2);
+            o.fill();
+        }
+
+        if(drag)
+        {
+            var x = e.clientX - rect.left, y = e.clientY - rect.top;
+
+            if(lastX && lastY)
+            {
+                var dx = x - lastX, dy = y - lastY;
+                var d = Math.sqrt(dx * dx + dy * dy);
+                for(var i = 1; i < d; i += 2)
+                {
+                    dot(lastX + dx / d * i, lastY + dy / d * i);
+                }
+            }
+            dot(x, y);
+
+            lastX = x;
+            lastY = y;
+        }
+    };
+
+    return OCRAD(c);
 }
 
 // going to use https://github.com/antimatter15/ocrad.js for OCR stuff
