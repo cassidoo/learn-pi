@@ -68,7 +68,7 @@ function OCRImage()
     var c = document.getElementById("drawCanvas");
     var o = c.getContext('2d');
     var drag = false, lastX, lastY;
-    
+
     c.onmousedown = function(e)
     {
         drag = true;
@@ -77,14 +77,14 @@ function OCRImage()
         e.preventDefault();
         c.onmousemove(e);
     };
-    
+
     c.onmouseup = function(e)
     {
         drag = false;
         e.preventDefault();
         runOCR();
     };
-    
+
     c.onmousemove = function(e)
     {
         e.preventDefault();
@@ -123,3 +123,35 @@ function OCRImage()
 }
 
 // going to use https://github.com/antimatter15/ocrad.js for OCR stuff
+
+function startVoice()
+{
+    var rec = new webkitSpeechRecognition();
+    // Continuous listening, we don't want to let the user pause
+    rec.continuous = true;
+
+    rec.start();
+
+    rec.onresult = function(e)
+    {
+        for(var i = e.resultIndex; i < e.results.length; ++i)
+        {
+            if(e.results[i].isFinal)
+            {
+            }
+        }
+    };
+}
+
+/*
+
+ The event object returned contains the following data:
+
+ results[i] – an array containing recognition result objects. Each array element corresponds to a recognised word
+ resultIndex – this is the current recognition result index
+ results[i].isFinal – a Boolean that indicates if the the result is final or interim (interim results can be asked for via the interimResults attribute)
+ results[i][j] – a 2D array containing alternative recognised words. The first element is the most probable recognised word
+ results[i][j].transcript – the text representation of the recognised word(s)
+ results[i][j].confidence – the probability of the result given as being correct (float value from 0 to 1)
+
+ */
