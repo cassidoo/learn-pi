@@ -14,11 +14,18 @@
 		<div id="opening">
 			<h1>LearnPi</h1>
 			<p>
-				Do you want to type, or draw?
+				Do you want to study, type, draw, or speak?
 			</p>
+			<input type="button" value="Study" class="introbutton" onclick="inputMethod('study')" />
 			<input type="button" value="Type" class="introbutton" onclick="inputMethod('type')" />
 			<input type="button" value="Draw" class="introbutton" onclick="inputMethod('draw')" />
 			<input type="button" value="Speak" class="introbutton" onclick="inputMethod('speak')" />
+		</div>
+		<div id="studying">
+			<div class="studyblock">
+				<div id="nums">3.</div>
+			</div>
+			<input type="button" value="Show More Digits" onclick="showDigits(10)" />
 		</div>
 		<div id="typing">
 			<div id="typecontent">

@@ -3,7 +3,11 @@ var cursor = 0;
 function inputMethod(iMethod)
 {
     document.getElementById("opening").style.display = "none";
-    if(iMethod === "type")
+    if(iMethod === "study")
+    {
+        document.getElementById("studying").style.display = "block";
+    }
+    else if(iMethod === "type")
     {
         document.getElementById("typing").style.display = "block";
 
@@ -31,6 +35,12 @@ function inputMethod(iMethod)
     {
         alert("what the heck is happening");
     }
+}
+
+function showDigits(num)
+{
+    document.getElementById("nums").innerHTML += pi.substring(cursor, cursor + num);
+    cursor = cursor + num;
 }
 
 function reset()
