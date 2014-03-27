@@ -30,7 +30,8 @@ function inputMethod(iMethod)
     }
     else if(iMethod === "speak")
     {
-        document.getElementById("drawing").style.display = "block";
+        document.getElementById("speaking").style.display = "block";
+
     }
     else
     {
@@ -58,6 +59,15 @@ function numinput(num)
         if(document.getElementById("resultat").value.length > 7)
         {
             document.getElementById("resultat").value = document.getElementById("resultat").value.substring(1);
+        }
+    }
+
+    if(method === "speak")
+    {
+        document.getElementById("speakresult").value = document.getElementById("speakresult").value + num;
+        if(document.getElementById("speakresult").value.length > 7)
+        {
+            document.getElementById("speakresult").value = document.getElementById("speakresult").value.substring(1);
         }
     }
 
