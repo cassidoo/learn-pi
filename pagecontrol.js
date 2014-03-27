@@ -1,4 +1,5 @@
 var cursor = 0;
+var method = "none";
 
 function inputMethod(iMethod)
 {
@@ -10,7 +11,7 @@ function inputMethod(iMethod)
     else if(iMethod === "type")
     {
         document.getElementById("typing").style.display = "block";
-
+        method = "type";
         document.onkeydown = function(event)
         {
             if((event.keyCode > 47) && (event.keyCode < 58))
@@ -51,11 +52,15 @@ function reset()
 
 function numinput(num)
 {
-    document.getElementById("resultat").value = document.getElementById("resultat").value + num;
-    if(document.getElementById("resultat").value.length > 7)
+    if(method === "type")
     {
-        document.getElementById("resultat").value = document.getElementById("resultat").value.substring(1);
+        document.getElementById("resultat").value = document.getElementById("resultat").value + num;
+        if(document.getElementById("resultat").value.length > 7)
+        {
+            document.getElementById("resultat").value = document.getElementById("resultat").value.substring(1);
+        }
     }
+
     if(num < 0)
     {
         alert("what the heck is happening");
@@ -165,3 +170,42 @@ function startVoice()
  results[i][j].confidence – the probability of the result given as being correct (float value from 0 to 1)
 
  */
+
+function translateNum(result)
+{
+    switch(n)
+    {
+        case "one":
+            numinput(1);
+            break;
+        case "two":
+            numinput(2);
+            break;
+        case "three":
+            numinput(3);
+            break;
+        case "four":
+            numinput(4);
+            break;
+        case "five":
+            numinput(5);
+            break;
+        case "six":
+            numinput(6);
+            break;
+        case "seven":
+            numinput(7);
+            break;
+        case "eight":
+            numinput(8);
+            break;
+        case "nine":
+            numinput(9);
+            break;
+        case "zero":
+            numinput(0);
+            break;
+        default:
+        //repeat that, idiot
+    }
+}
