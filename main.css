@@ -57,6 +57,7 @@ h1
 .studyblock
 {
 	position: absolute;
+	overflow: auto;
 	top: 50%;
 	left: 50%;
 	width: 300px;
@@ -71,6 +72,12 @@ h1
 	border-radius: 5px;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #868686, 0px 10px 30px 0px rgba(0, 0, 0, 0.6), 0px 3px 8px 0px rgba(0,0,0,0.4);
 	box-shadow: inset 0px 1px 0px 0px #868686, 0px 10px 30px 0px rgba(0, 0, 0, 0.6), 0px 3px 8px 0px rgba(0,0,0,0.4);
+}
+
+.studybutton
+{
+	position: absolute;
+	bottom: 0;
 }
 
 #nums
