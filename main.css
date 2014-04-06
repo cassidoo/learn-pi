@@ -63,7 +63,7 @@ h1
 	left: 50%;
 	width: 300px;
 	height: 300px;
-	margin-left: -150px;
+	margin-left: -155px;
 	margin-top: -150px;
 	padding: 4px;
 	background-color: #3f3f3f;
@@ -75,19 +75,12 @@ h1
 	box-shadow: inset 0px 1px 0px 0px #868686, 0px 10px 30px 0px rgba(0, 0, 0, 0.6), 0px 3px 8px 0px rgba(0,0,0,0.4);
 }
 
-.studybutton
-{
-	position: absolute;
-	top: 0;
-	margin: 10px;
-	width: 80%;
-}
-
 #nums
 {
 	width: 100%;
 	color: #c4c4c4;
 	word-wrap: break-word;
+	margin-top: 30px;
 }
 
 #typecontent
@@ -211,7 +204,6 @@ input[type=button].introbutton
 	height: 75px;
 	margin-left: -150px;
 	margin-top: -150px;
-	
 	background-color: #3f3f3f;
 	border: 1px solid #1e1e1e;
 	-webkit-border-radius: 5px;
@@ -219,4 +211,15 @@ input[type=button].introbutton
 	border-radius: 5px;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #868686, 0px 10px 30px 0px rgba(0, 0, 0, 0.6), 0px 3px 8px 0px rgba(0,0,0,0.4);
 	box-shadow: inset 0px 1px 0px 0px #868686, 0px 10px 30px 0px rgba(0, 0, 0, 0.6), 0px 3px 8px 0px rgba(0,0,0,0.4);
+}
+
+#studybutton
+{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 310px;
+	margin-left: -155px;
+	margin-top: -150px;
+	padding: 0px;
 }
