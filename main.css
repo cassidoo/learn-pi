@@ -57,7 +57,8 @@ h1
 .studyblock
 {
 	position: absolute;
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	top: 50%;
 	left: 50%;
 	width: 300px;
@@ -77,12 +78,15 @@ h1
 .studybutton
 {
 	position: absolute;
-	bottom: 0;
+	top: 0;
+	margin: 10px;
+	width: 80%;
 }
 
 #nums
 {
 	width: 100%;
+	color: #c4c4c4;
 	word-wrap: break-word;
 }
 
