@@ -223,3 +223,19 @@ input[type=button].introbutton
 	margin-top: -150px;
 	padding: 0px;
 }
+
+.goback
+{
+	position: fixed;
+	bottom: 30px;
+	left: 50%;
+	width: 80px;
+	height: 60px;
+	margin-left: -40px;
+}
+
+#thisisstupid
+{
+	width: 80px;
+	height: 60px;
+}
