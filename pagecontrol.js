@@ -39,6 +39,16 @@ function inputMethod(iMethod)
     }
 }
 
+function goback()
+{
+    reset();
+    document.getElementById("studying").style.display = "none";
+    document.getElementById("typing").style.display = "none";
+    document.getElementById("drawing").style.display = "none";
+    document.getElementById("speaking").style.display = "none";
+    document.getElementById("opening").style.display = "block";
+}
+
 function showDigits(num)
 {
     document.getElementById("nums").innerHTML += pi.substring(cursor, cursor + num);
