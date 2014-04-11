@@ -13,6 +13,7 @@ body
 	background-image: -webkit-radial-gradient(center top, circle farthest-side, #D2D3B8 0%, #88836B 100%);
 	background-image: -moz-radial-gradient(center top, circle farthest-side, #D2D3B8 0%, #88836B 100%);
 	background-image: -o-radial-gradient(center top, circle farthest-side, #D2D3B8 0%, #88836B 100%);
+	overflow: hidden;
 }
 
 #opening
@@ -52,6 +53,7 @@ h1
 	font-size: 7em;
 	line-height: .1em;
 	font-weight: 100;
+	text-align: center;
 }
 
 .studyblock
