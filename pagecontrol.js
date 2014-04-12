@@ -161,19 +161,28 @@ function OCRImage()
 
 function startVoice()
 {
+
+    if(!('webkitSpeechRecognition' in window))
+    {
+        // Recommend browser upgrade
+        alert("Your browser doesns't allow for recording. Try upgrading it!");
+    }
+
     var rec = new webkitSpeechRecognition();
     // Continuous listening, we don't want to let the user pause
     rec.continuous = true;
-
+    recognition.interimResults = true; // we want results on the go
     rec.start();
 
     rec.onresult = function(e)
     {
+        var interim_transcript = '';
         for(var i = e.resultIndex; i < e.results.length; ++i)
         {
-            if(e.results[i].isFinal)
-            {
-            }
+            //if(e.results[i].isFinal) {}
+            
+            interim_transcript += e.results[i][0].transcript;
+            // set field here and check for correctness
         }
     };
 }
