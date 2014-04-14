@@ -53,6 +53,7 @@ function showDigits(num)
 {
     document.getElementById("nums").innerHTML += pi.substring(cursor, cursor + num);
     cursor = cursor + num;
+    document.getElementById("shownum").innerHTML = cursor;
 }
 
 function reset()
@@ -183,6 +184,7 @@ function startVoice()
             
             interim_transcript += e.results[i][0].transcript;
             // set field here and check for correctness
+            translateNum(interim_transcript);
         }
     };
 }
