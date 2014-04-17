@@ -98,64 +98,81 @@ function numinput(num)
     }
 }
 
+// using drawing algorithm from Stack Overflow http://stackoverflow.com/questions/2368784/draw-by-mouse-with-html5-canvas
+var canvas, ctx, flag = false, prevX = 0, currX = 0, prevY = 0, currY = 0, dot_flag = false;
 function OCRImage()
 {
-    // example I'll work with from https://github.com/antimatter15/ocrad.js/blob/master/demo.html
-    var c = document.getElementById("drawCanvas");
-    var o = c.getContext('2d');
-    var drag = false, lastX, lastY;
+    canvas = document.getElementById('drawCanvas');
+    ctx = canvas.getContext("2d");
+    w = canvas.width;
+    h = canvas.height;
 
-    c.onmousedown = function(e)
+    canvas.addEventListener("mousemove", function(e)
     {
-        drag = true;
-        lastX = 0;
-        lastY = 0;
-        e.preventDefault();
-        c.onmousemove(e);
-    };
-
-    c.onmouseup = function(e)
+        findxy('move', e)
+    }, false);
+    canvas.addEventListener("mousedown", function(e)
     {
-        drag = false;
-        e.preventDefault();
-        runOCR();
-    };
-
-    c.onmousemove = function(e)
+        findxy('down', e)
+    }, false);
+    canvas.addEventListener("mouseup", function(e)
     {
-        e.preventDefault();
-        var rect = c.getBoundingClientRect();
-        var r = 5;
+        findxy('up', e)
+    }, false);
+    canvas.addEventListener("mouseout", function(e)
+    {
+        findxy('out', e)
+    }, false);
 
-        function dot(x, y)
+    //return OCRAD(c);
+}
+
+function draw()
+{
+    ctx.beginPath();
+    ctx.moveTo(prevX, prevY);
+    ctx.lineTo(currX, currY);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.closePath();
+}
+
+function findxy(res, e)
+{
+    if(res == 'down')
+    {
+        prevX = currX;
+        prevY = currY;
+        currX = e.clientX - canvas.offsetLeft;
+        currY = e.clientY - canvas.offsetTop;
+
+        flag = true;
+        dot_flag = true;
+        if(dot_flag)
         {
-            o.beginPath();
-            o.moveTo(x + r, y);
-            o.arc(x, y, r, 0, Math.PI * 2);
-            o.fill();
+            ctx.beginPath();
+            ctx.fillStyle = x;
+            ctx.fillRect(currX, currY, 2, 2);
+            ctx.closePath();
+            dot_flag = false;
         }
-
-        if(drag)
+    }
+    if(res == 'up' || res == "out")
+    {
+        flag = false;
+    }
+    if(res == 'move')
+    {
+        if(flag)
         {
-            var x = e.clientX - rect.left, y = e.clientY - rect.top;
-
-            if(lastX && lastY)
-            {
-                var dx = x - lastX, dy = y - lastY;
-                var d = Math.sqrt(dx * dx + dy * dy);
-                for(var i = 1; i < d; i += 2)
-                {
-                    dot(lastX + dx / d * i, lastY + dy / d * i);
-                }
-            }
-            dot(x, y);
-
-            lastX = x;
-            lastY = y;
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+            draw();
         }
-    };
-
-    return OCRAD(c);
+    }
 }
 
 // going to use https://github.com/antimatter15/ocrad.js for OCR stuff
@@ -172,7 +189,8 @@ function startVoice()
     var rec = new webkitSpeechRecognition();
     // Continuous listening, we don't want to let the user pause
     rec.continuous = true;
-    recognition.interimResults = true; // we want results on the go
+    recognition.interimResults = true;
+    // we want results on the go
     rec.start();
 
     rec.onresult = function(e)
@@ -181,7 +199,7 @@ function startVoice()
         for(var i = e.resultIndex; i < e.results.length; ++i)
         {
             //if(e.results[i].isFinal) {}
-            
+
             interim_transcript += e.results[i][0].transcript;
             // set field here and check for correctness
             translateNum(interim_transcript);
